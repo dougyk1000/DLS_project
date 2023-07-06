@@ -1,4 +1,4 @@
-# DLS_project
+# DLS_project (продвинутый поток)
 Выпускной проект по курсу DLS MIPT
 
 
