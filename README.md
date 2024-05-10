@@ -1,109 +1,87 @@
-# DLS_project (продвинутый поток)
-Выпускной проект по курсу DLS MIPT
+# DLS_project (advanced thread)
+ Final project for the DLS MIPT course
 
 
-В моей задаче необходимо при помощи нейронной сети научиться осуществлять активную фазировку многоканальной системы. 
+ In my task, it is necessary to learn how to carry out active phasing of a multi-channel system using a neural network.
 
-1. Это новая технология в физической системе, но есть прикладные к ней, 
-на основе которых строится датасет.
+ 1. This is a new technology in a physical system, but there are applications to it,
+ on the basis of which the dataset is built.
 
-2. Данные - будут использоваться численные алгоритмы для наработки данных. Данные представляют собой матрицу интенсивностей поля с неким разбиением. 
+ 2. Data - numerical algorithms will be used to generate data.  The data is a matrix of field intensities with a certain partition.
 
-3. Концептуально хочется разработать 2 сетки. Сверточную и полносвязную, провести эксперименты над гиперпараметрами,
-выбрать лучшую, обосновать результаты. Сеть должна быть простой и легкой, потому что в реальном эксперименте важна быстрота фазировки. Именно для этой задачи сверточная, кажется, подойдет больше всего, ее можно будет "наворачивать" и расширять функционал, 
-но опять же выбор архитектуры будет в пользу быстродействия работы системы. 
+ 3. Conceptually, I would like to develop 2 grids.  Convolutional and fully connected, conduct experiments on hyperparameters,
+ choose the best one, justify the results.  The network should be simple and lightweight, because in a real experiment, fast phasing is important.  It is for this task that the convolutional one seems to be most suitable, it will be possible to “screw up” it and expand the functionality,
+ but again, the choice of architecture will be in favor of the speed of the system.
 
-4. Целевой метрикой будет являться физическая величина, показывающая сфазированность системы после применения сетки к матрице интенсивностей. 
-Так же для более полного понимания решаемой задачи предоставляю блок схему проекта
-
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/cdd4d4be-4e02-40ad-b267-1bd459bd4fd9)
-
-План реализации: 
-
-1. Моделирование многоканального лазерного излучения в ближней и дальней зонах
-2. Создание обучающей выборки для нейронной сети 
-3. Разработка полносвязной нейронной сети 
-4. Анализ результатов 
-5. Разработка сверточной нейронной сети 
-6. Эксперименты с гиперпараметрами лучшей модели
-
-# Моделирование многоканального лазерного излучения в ближней зоне.
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/a858d1f5-a3f7-4e34-95ba-5a98210f8b53)
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/aaf934dc-76e8-469a-8900-507d9136d9ba)
+a physical quantity indicating the phasing of the system after applying a grid to the intensity matrix.
+ Also, for a more complete understanding of the problem being solved, I provide a block diagram of the project
 
 
-# Моделирование многоканального лазерного излучения в дальней зоне.
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/cdd4d4be-4e02-40ad-b267-1bd459bd4fd9)
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/58dd8903-b8f4-437e-b0bb-d2b064a0f53e)
+ # Implementation plan:
 
+ 1. Simulation of multichannel laser radiation in the near and far zones
+ 2. Creating a training sample for the neural network
+ 3. Development of a fully connected neural network
+ 4. Analysis of results
+ 5. Development of a convolutional neural network
+ 6. Experiments with hyperparameters of the best model
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/133932c6-d9e6-4de5-b1c8-30759b4546a4)
+# laser radiation in the near zone.
 
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/a858d1f5-a3f7-4e34-95ba-5a98210f8b53)
 
-# Создание обучающей выборки 
-
-Принцип формирования одной пары данных:
-
-Имеется отрезок  [0, 2π] для возможных значений одной из четырех фаз лазерного канала.
-Выбирая разбиение 2π/16 для каждой фазы численно получен полный перебор фаз, зная которые получены распределения интенсивностей.
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/d58d774a-bed3-4160-89c6-f356a56540fe)
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/df7b43e9-1a54-447d-ac7f-76b2684464cc)
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/aaf934dc-76e8-469a-8900-507d9136d9ba)
 
 
-# Разработка полносвязной нейронной сети
+ # Simulation of multichannel laser radiation in the far zone.
 
-Архитектура:
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/9f6c93bf-ca13-447c-be1f-8b2b5c1d4dca)
-
-Алгоритм обучения:
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/4d624bac-c07f-4adb-9921-070af91f4e41)
-
-Лосс:
-
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/37f549aa-27fd-462a-bf6f-835ffcf7c213)
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/58dd8903-b8f4-437e-b0bb-d2b064a0f53e)
 
 
-# Анализ результатов
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/133932c6-d9e6-4de5-b1c8-30759b4546a4)
 
-Единичный случай
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/2a4a0edf-8d62-40fa-838e-b3d6f8df300f)
 
-Слева матрица на случайно сгенерированных фазах
+ # Creating a training sample
 
-Справа матрица после применения "нейрофазировки"
+ The principle of forming one pair of data:
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/d4b5fa4a-42b2-48eb-8795-cba086d3b13e)
+There is a segment [0, 2π] for possible values ​​of one of the four phases of the laser channel.
+ Loss:
 
-Общий случай
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/37f549aa-27fd-462a-bf6f-835ffcf7c213)
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/bdc2a411-2d5b-44b1-b4ae-f9e60fa11026)
 
-# Разработка полносвязной нейронной сети
+ # Analysis of results
 
-Архитектура. За базовую модель была взята LeNet5, однако была изменена для решения задачи регрессии, 
-а так же претерпели изменения размерности слоев, сдвиг и размер свертки, слои пулинга работали жадно для такой задачи,
-в итоге после многочисленных экспериментов с гиперпараметрами была выбрана следующая архитектура, которая дала 
-наиулучшие результаты.
+ Single case
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/2a4a0edf-8d62-40fa-838e-b3d6f8df300f)
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/864bddad-871f-492a-bd46-ad8d08e0334b)
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/c0246bb7-9f98-41ba-9d09-45c70ab9fb39)
+ On the left is a matrix on randomly generated phases
+
+ On the right is the matrix after applying “neurophasing”
+
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/d4b5fa4a-42b2-48eb-8795-cba086d3b13e)
+
+ General case
+
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/bdc2a411-2d5b-44b1-b4ae-f9e60fa11026)
+
+ # Development of a fully connected neural network
+
+ Architecture.  LeNet5 was taken as the base model, but was modified to solve the regression problem,
+ and also underwent changes in the dimension of the layers, shift and convolution size, the pooling layers worked greedily for such a task,
+ in the end, after numerous experiments with hyperparameters, the following architecture was chosen, which gave
+ best results.
+
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/864bddad-871f-492a-bd46-ad8d08e0334b)
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/c0246bb7-9f98-41ba-9d09-45c70ab9fb39)
 
 
 
-# Анализ результатов сверточной нейронной сети.
+ # Analysis of the results of a convolutional neural network.
 
-![image](https://github.com/sammorozov/DLS_project/assets/109150200/9eada714-fa30-44bf-8b1f-4c367e346702)
+ ![image](https://github.com/sammorozov/DLS_project/assets/109150200/9eada714-fa30-44bf-8b1f-4c367e346702)
 
-Далее, посчитаем на сколько в среднем увеличивается число Штреля при такой конфигурации, которая на данный момент является лучшей по результатам графиков. В среднем после прохода любого набора данных через сверточную нейросеть число Штреля увеличивается на 0.42, через полносвязную на 0.37. Очевидно, что будет использоваться сверточная нейронная сеть для фазировки, поскольку она дает лучшее качество и количество сфазированных случаев. Из начального распределения среднее число Штреля составляет: 0.25, что означает при сложении будет в среднем получаться 0.69, что недотягивает до фазировки на несколько пунктов, но уже является хорошим результатом. 
-
-# Выводы
-
-Сверточная сеть показала лучший результат для максимального количества сфазированных случаев, однако, не исключен тот факт, что полносвязную сеть можно было улучшить таким образом, чтобы результат был похожим на итоговый результат для сверточной сети. В этом предположении и дальнейших рассуждениях я утверждаю, что сверточная сеть является более гибкой в настройке гиперпараметров, поэтому для больших разбиений дальней зоны именно сверточная сеть будет быстрее давать хорошие результаты, поскольку количество экспериментов на сверточных нейросетях не ограничивается только лишь перебором количеством нейронов в скрытых слоях, можно добавлять различные слои, и проводить еще больше различных экспериментов в различных конфигурациях. 
-
+ Next, let’s calculate how much the Strehl number increases on average for this configuration, which is currently the best according to the results of the graphs.  On average, after passing any data set through a convolutional neural network, the Strehl number increases by 0.42, and through a fully connected one by 0.37.  Obviously, a convolutional neural network will be used for phasing since it gives the best quality and quantity of phasing cases.  From the initial distribution, the average Strehl number is: 0.25, which means when added, the average result will be 0.69, which falls short of phasing by several points, but is already a good result.
